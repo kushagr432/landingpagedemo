@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { FaWhatsapp } from 'react-icons/fa'
-import { HiCalendar, HiClock, HiVideoCamera } from 'react-icons/hi'
+import { HiCalendar, HiClock, HiVideoCamera, HiCheckCircle } from 'react-icons/hi'
 import { WHATSAPP_LINK, WORKSHOP_DATE, WORKSHOP_TIME, WORKSHOP_PLATFORM } from '../lib/constants'
 
 const fadeUp = {
@@ -18,6 +18,12 @@ const InfoBadge = ({ icon: Icon, text }) => (
     <span>{text}</span>
   </div>
 )
+
+const trustPoints = [
+  'No experience needed',
+  'Online from home',
+  'Certificate on completion',
+]
 
 export default function Hero() {
   return (
@@ -39,7 +45,7 @@ export default function Hero() {
       />
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center max-w-5xl">
-        {/* Badge */}
+        {/* Live badge */}
         <motion.div
           variants={fadeUp}
           initial="hidden"
@@ -48,24 +54,24 @@ export default function Hero() {
           className="inline-flex items-center gap-2 bg-orange-500/20 border border-orange-400/40 text-orange-300 text-sm font-semibold rounded-full px-5 py-2 mb-8"
         >
           <span className="w-2 h-2 bg-orange-400 rounded-full animate-pulse" />
-          100% FREE · Live Online Workshop
+          100% FREE · Live Bollywood Dance Workshop
         </motion.div>
 
-        {/* Main headline */}
+        {/* Outcome-driven headline */}
         <motion.h1
           variants={fadeUp}
           initial="hidden"
           animate="visible"
           custom={0.15}
-          className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-tight mb-6 text-shadow"
+          className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[1.05] mb-6 text-shadow"
         >
-          Free Live{' '}
-          <span className="gradient-text">Dance</span>
+          From Zero to{' '}
+          <span className="gradient-text">Confident</span>
           <br />
-          Workshop
+          Dancer in 60 Minutes
         </motion.h1>
 
-        {/* Sub-headline */}
+        {/* Emotional sub-headline */}
         <motion.p
           variants={fadeUp}
           initial="hidden"
@@ -73,19 +79,19 @@ export default function Hero() {
           custom={0.3}
           className="text-xl sm:text-2xl text-gray-200 mb-4 max-w-2xl mx-auto leading-relaxed"
         >
-          Step onto the floor, unleash your energy, and{' '}
-          <span className="text-pink-300 font-semibold">build real confidence</span> — even if you've
-          never danced a single step before.
+          Imagine walking into your next wedding, sangeet, or party and{' '}
+          <span className="text-pink-300 font-semibold">owning the dance floor</span> — no awkward side-shuffles, no sitting out. 
+          Just pure joy and confidence.
         </motion.p>
 
         <motion.p
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          custom={0.4}
-          className="text-base text-purple-300 mb-10 font-medium"
+          custom={0.38}
+          className="text-base text-purple-300 mb-8 font-medium"
         >
-          Beginners welcome · No prior experience needed · Just bring your energy!
+          Join 5,000+ beginners who transformed their confidence with just one workshop.
         </motion.p>
 
         {/* Info badges */}
@@ -93,8 +99,8 @@ export default function Hero() {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          custom={0.5}
-          className="flex flex-wrap justify-center gap-3 mb-12"
+          custom={0.46}
+          className="flex flex-wrap justify-center gap-3 mb-10"
         >
           <InfoBadge icon={HiCalendar} text={WORKSHOP_DATE} />
           <InfoBadge icon={HiClock} text={WORKSHOP_TIME} />
@@ -106,35 +112,70 @@ export default function Hero() {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          custom={0.6}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          custom={0.54}
+          className="flex flex-col items-center gap-4"
         >
-          <a
+          <motion.a
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.97 }}
             href={WHATSAPP_LINK}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-whatsapp text-xl py-5 px-10 glow-green"
           >
             <FaWhatsapp size={26} />
-            Register on WhatsApp — It's Free!
-          </a>
+            Reserve Your Spot on WhatsApp
+          </motion.a>
+
+          {/* Trust row */}
+          <div className="flex flex-wrap justify-center gap-x-5 gap-y-1 mt-1">
+            {trustPoints.map((p) => (
+              <span key={p} className="flex items-center gap-1.5 text-sm text-gray-400">
+                <HiCheckCircle className="text-green-400 shrink-0" size={15} />
+                {p}
+              </span>
+            ))}
+          </div>
         </motion.div>
 
         <motion.p
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          custom={0.75}
-          className="mt-5 text-sm text-gray-400"
+          custom={0.65}
+          className="mt-6 text-sm text-gray-400"
         >
-          🔥 Only <strong className="text-orange-400">30 seats</strong> available — grab yours before it fills up!
+          🔥 Only <strong className="text-orange-400">30 seats</strong> per batch — 23 already taken. Don't miss out!
         </motion.p>
+
+        {/* Social proof avatars */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={0.72}
+          className="mt-8 flex flex-col items-center gap-2"
+        >
+          <div className="flex -space-x-3">
+            {['👩', '👨‍🎓', '👩‍🦱', '🧑', '👩‍💼'].map((a, i) => (
+              <div
+                key={i}
+                className="w-9 h-9 rounded-full border-2 border-purple-900 bg-gradient-to-br from-purple-600 to-pink-500 flex items-center justify-center text-base"
+              >
+                {a}
+              </div>
+            ))}
+          </div>
+          <p className="text-xs text-gray-500">
+            <span className="text-yellow-400">★★★★★</span>&nbsp; Loved by 5,000+ students across India
+          </p>
+        </motion.div>
 
         {/* Scroll indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 1 }}
+          transition={{ delay: 1.6, duration: 1 }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-500 text-xs"
         >
           <span>Scroll to explore</span>

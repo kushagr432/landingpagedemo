@@ -1,40 +1,39 @@
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import { FaWhatsapp } from 'react-icons/fa'
+import { WHATSAPP_LINK } from '../lib/constants'
 
 const lessons = [
   {
     icon: '🕺',
-    title: 'Master the Basics',
-    desc: 'Learn foundational dance moves that work for any style — hip-hop, Bollywood, or contemporary.',
+    title: 'Your First Real Moves',
+    desc: 'No awkward shuffling. In 20 minutes you\'ll have clean, confident steps that actually look good — even if you\'ve never danced before.',
   },
   {
     icon: '🎵',
-    title: 'Feel the Rhythm',
-    desc: 'Train your body to lock onto beats naturally so you never feel off-count again.',
+    title: 'Feel the Beat Instantly',
+    desc: 'Stop counting "1-2-3-4" in your head. Learn a dead-simple technique to lock onto any Bollywood beat naturally.',
   },
   {
     icon: '💫',
-    title: 'Stage-Ready Moves',
-    desc: 'Pick up performance-quality choreography you can show off at events, parties, or reels.',
+    title: 'Sangeet-Ready Choreography',
+    desc: 'A full 60-second sequence you can perform at weddings, parties, or Instagram reels — polished enough to get compliments.',
   },
   {
     icon: '🧠',
-    title: 'Body Coordination',
-    desc: 'Improve spatial awareness and muscle memory through guided drills designed for all levels.',
+    title: 'Body Language Unlocked',
+    desc: 'Dance reshapes how you carry yourself. Walk out of this workshop standing taller, moving with more ease and confidence.',
   },
   {
     icon: '✨',
-    title: 'Express Yourself',
-    desc: 'Unlock your personal style and learn to communicate emotion through movement — no script needed.',
+    title: 'Your Unique Dance Style',
+    desc: 'Stop copying others. Priya\'s method helps you find movements that feel natural to YOUR body — not a cookie-cutter routine.',
   },
 ]
 
 const containerVariants = {
   hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.12 },
-  },
+  visible: { transition: { staggerChildren: 0.12 } },
 }
 
 const itemVariants = {
@@ -48,7 +47,6 @@ export default function WhatYoullLearn() {
 
   return (
     <section className="relative py-24 bg-gray-950">
-      {/* Top divider glow */}
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
@@ -60,13 +58,15 @@ export default function WhatYoullLearn() {
           className="text-center mb-16"
         >
           <span className="text-purple-400 font-semibold uppercase tracking-widest text-sm">
-            Workshop Curriculum
+            What You Get in 60 Minutes
           </span>
           <h2 className="section-heading mt-3 mb-4">
-            What You'll <span className="gradient-text">Learn</span>
+            Skills That Take Most People{' '}
+            <span className="gradient-text">Months to Learn</span>
           </h2>
           <p className="section-subheading max-w-xl mx-auto">
-            In just 2 hours, you'll walk away with skills that took most dancers months to figure out.
+            Priya's method is specifically designed for busy people who want real results fast — 
+            not a semester of dance class.
           </p>
         </motion.div>
 
@@ -103,16 +103,40 @@ export default function WhatYoullLearn() {
             className="md:col-span-2 lg:col-span-1 relative overflow-hidden rounded-2xl p-6 bg-gradient-to-br from-purple-900/60 via-pink-900/40 to-orange-900/30 border border-purple-500/30 group"
           >
             <div className="absolute -top-6 -right-6 w-28 h-28 bg-orange-500/20 rounded-full blur-2xl group-hover:bg-orange-500/40 transition-all duration-500" />
-            <p className="text-orange-400 text-xs font-bold uppercase tracking-widest mb-2">Bonus</p>
+            <p className="text-orange-400 text-xs font-bold uppercase tracking-widest mb-2">Surprise Bonus</p>
             <div className="text-4xl mb-3">🎁</div>
             <h3 className="font-display font-bold text-lg text-white mb-1">
-              Free Practice Playlist
+              Practice Playlist + Quick-Start Guide
             </h3>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Every registered attendee gets a curated Spotify playlist perfectly timed for practicing
-              what you learn.
+              Every attendee gets a curated Spotify playlist and a one-page cheat sheet of all moves — 
+              so you can keep practicing long after the workshop ends.
             </p>
           </motion.div>
+        </motion.div>
+
+        {/* Mid-section CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mt-14 text-center"
+        >
+          <p className="text-gray-400 text-sm mb-4">
+            All of this — completely free. For one workshop only.
+          </p>
+          <motion.a
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.97 }}
+            href={WHATSAPP_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-whatsapp-sm"
+          >
+            <FaWhatsapp size={20} />
+            Reserve Your Spot Now
+          </motion.a>
         </motion.div>
       </div>
     </section>

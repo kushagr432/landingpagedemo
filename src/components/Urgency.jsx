@@ -1,10 +1,10 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { FaWhatsapp } from 'react-icons/fa'
-import { HiLightningBolt, HiClock } from 'react-icons/hi'
+import { HiLightningBolt, HiClock, HiExclamation } from 'react-icons/hi'
 import { WHATSAPP_LINK, WORKSHOP_DATE, WORKSHOP_TIME, TOTAL_SEATS } from '../lib/constants'
 
-const SEATS_TAKEN = 23
+const SEATS_TAKEN = 24
 
 function useCountdown(targetDate) {
   const calculateTimeLeft = () => {
@@ -30,12 +30,10 @@ function useCountdown(targetDate) {
 
 const TimeUnit = ({ value, label }) => (
   <div className="flex flex-col items-center">
-    <div className="relative">
-      <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center">
-        <span className="font-display font-black text-3xl sm:text-4xl text-white tabular-nums">
-          {String(value).padStart(2, '0')}
-        </span>
-      </div>
+    <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center shadow-lg">
+      <span className="font-display font-black text-3xl sm:text-4xl text-white tabular-nums">
+        {String(value).padStart(2, '0')}
+      </span>
     </div>
     <span className="text-gray-400 text-xs font-medium mt-2 uppercase tracking-widest">{label}</span>
   </div>
@@ -49,24 +47,27 @@ export default function Urgency() {
 
   return (
     <section className="relative py-24 overflow-hidden">
-      {/* Dramatic background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-red-950/40 via-purple-950/60 to-orange-950/30" />
+      {/* High-contrast background to stand out from the rest of the page */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#1a0010] via-[#2d0020] to-[#1a0533]" />
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-500/10 rounded-full blur-3xl" />
+        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-red-500/60 to-transparent" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-600/10 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-orange-500/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-orange-500/40 to-transparent" />
       </div>
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl text-center">
-        {/* Urgency badge */}
+
+        {/* Warning badge */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, type: 'spring' }}
-          className="inline-flex items-center gap-2 bg-red-500/20 border border-red-400/40 text-red-300 font-bold rounded-full px-5 py-2 mb-8 text-sm"
+          className="inline-flex items-center gap-2 bg-red-500/20 border border-red-400/50 text-red-300 font-bold rounded-full px-5 py-2 mb-8 text-sm"
         >
-          <HiLightningBolt className="animate-pulse" />
-          ⚠️ Almost Full — Act Now!
+          <HiLightningBolt className="animate-pulse" size={16} />
+          ⚠️ This Batch is Almost Full
         </motion.div>
 
         <motion.h2
@@ -74,9 +75,13 @@ export default function Urgency() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="section-heading mb-4"
+          className="section-heading mb-3"
         >
-          Limited Seats — <span className="text-red-400">Only {seatsLeft} Left!</span>
+          Only{' '}
+          <span className="text-red-400 underline decoration-dotted decoration-red-500/50">
+            {seatsLeft} Spots
+          </span>{' '}
+          Remaining
         </motion.h2>
 
         <motion.p
@@ -84,10 +89,21 @@ export default function Urgency() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="section-subheading mb-10 max-w-lg mx-auto"
+          className="text-gray-300 text-lg mb-3 max-w-lg mx-auto leading-relaxed"
         >
-          We cap every workshop at {TOTAL_SEATS} students so Priya can give each learner personal
-          attention. Seats fill up fast.
+          We keep every batch small — just {TOTAL_SEATS} students — so Priya can 
+          correct your form, answer your questions, and make sure you actually learn.
+        </motion.p>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="text-red-300 text-sm font-semibold flex items-center justify-center gap-1.5 mb-10"
+        >
+          <HiExclamation size={16} className="shrink-0" />
+          Once these seats are gone, you'll have to wait for the next batch (no guarantee of when).
         </motion.p>
 
         {/* Countdown timer */}
@@ -122,22 +138,22 @@ export default function Urgency() {
           className="mb-10 max-w-sm mx-auto"
         >
           <div className="flex justify-between text-sm mb-2">
-            <span className="text-gray-400">{SEATS_TAKEN} seats taken</span>
-            <span className="text-red-400 font-semibold">{seatsLeft} remaining</span>
+            <span className="text-gray-400">{SEATS_TAKEN} seats claimed</span>
+            <span className="text-red-400 font-bold">{seatsLeft} left!</span>
           </div>
-          <div className="h-3 bg-white/10 rounded-full overflow-hidden">
+          <div className="h-3.5 bg-white/10 rounded-full overflow-hidden">
             <motion.div
               initial={{ width: 0 }}
               whileInView={{ width: `${fillPercent}%` }}
               viewport={{ once: true }}
-              transition={{ duration: 1.2, delay: 0.5, ease: 'easeOut' }}
+              transition={{ duration: 1.4, delay: 0.5, ease: 'easeOut' }}
               className="h-full bg-gradient-to-r from-orange-500 to-red-500 rounded-full"
             />
           </div>
-          <p className="text-xs text-gray-500 mt-2">{fillPercent}% filled</p>
+          <p className="text-xs text-gray-500 mt-1.5">{fillPercent}% of seats filled</p>
         </motion.div>
 
-        {/* Workshop details recap */}
+        {/* Quick info recap */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -158,19 +174,27 @@ export default function Urgency() {
         </motion.div>
 
         {/* CTA */}
-        <motion.a
+        <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.5, type: 'spring' }}
-          href={WHATSAPP_LINK}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-whatsapp text-xl py-5 px-10 glow-green"
         >
-          <FaWhatsapp size={26} />
-          Secure My Spot — WhatsApp Now
-        </motion.a>
+          <motion.a
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.97 }}
+            href={WHATSAPP_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-whatsapp text-xl py-5 px-10 glow-green"
+          >
+            <FaWhatsapp size={26} />
+            Claim My Spot Before It's Gone
+          </motion.a>
+          <p className="mt-4 text-xs text-gray-500">
+            Takes 10 seconds. No forms. No payment. Just tap and send.
+          </p>
+        </motion.div>
       </div>
     </section>
   )

@@ -1,6 +1,14 @@
 import { motion } from 'framer-motion'
 import { FaWhatsapp } from 'react-icons/fa'
+import { HiCheckCircle } from 'react-icons/hi'
 import { WHATSAPP_LINK } from '../lib/constants'
+
+const promises = [
+  'Free to join — no hidden cost',
+  'Beginner-friendly — zero experience needed',
+  'Online from home — no commute',
+  'Live with Priya — real-time feedback',
+]
 
 export default function FinalCTA() {
   return (
@@ -22,19 +30,30 @@ export default function FinalCTA() {
         >
           <div className="text-6xl mb-6 animate-float inline-block">💃</div>
 
-          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-black text-white leading-tight mb-6">
-            Your Dance Journey{' '}
-            <span className="gradient-text">Starts Tonight.</span>
+          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-black text-white leading-tight mb-5">
+            Stop Saying{' '}
+            <span className="gradient-text">"Maybe Next Time."</span>
           </h2>
 
-          <p className="text-xl text-gray-200 leading-relaxed mb-4 max-w-xl mx-auto">
-            Stop waiting for the "right time." The right time is now. One workshop can change the way you
-            carry yourself for the rest of your life.
+          <p className="text-xl text-gray-200 leading-relaxed mb-3 max-w-xl mx-auto">
+            "Next time" has been postponed long enough. 
+            The version of you that dances confidently — at weddings, parties, on reels — 
+            is <em className="text-pink-300 not-italic font-semibold">one workshop away.</em>
           </p>
 
-          <p className="text-gray-300 text-base mb-10">
-            ✅ Free to join &nbsp;·&nbsp; ✅ Beginner-friendly &nbsp;·&nbsp; ✅ Online from home &nbsp;·&nbsp; ✅ Live with Q&A
+          <p className="text-gray-300 text-base mb-8">
+            And it won't cost you a single rupee.
           </p>
+
+          {/* Promises checklist */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-10 max-w-md mx-auto text-left">
+            {promises.map((p) => (
+              <div key={p} className="flex items-center gap-2.5 text-sm text-gray-200">
+                <HiCheckCircle className="text-green-400 shrink-0" size={18} />
+                {p}
+              </div>
+            ))}
+          </div>
 
           <motion.a
             whileHover={{ scale: 1.05 }}
@@ -45,11 +64,11 @@ export default function FinalCTA() {
             className="btn-whatsapp text-xl py-5 px-12 glow-green shadow-2xl"
           >
             <FaWhatsapp size={28} />
-            Register on WhatsApp — FREE
+            Reserve My Free Spot Now
           </motion.a>
 
-          <p className="mt-6 text-sm text-gray-400">
-            Tap the button &rarr; Send the message &rarr; You're in! &nbsp;🎉
+          <p className="mt-5 text-sm text-gray-400">
+            Tap → Send the WhatsApp message → You're confirmed. Takes 10 seconds. 🎉
           </p>
         </motion.div>
       </div>
