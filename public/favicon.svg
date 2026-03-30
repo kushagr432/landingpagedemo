@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7c1fa8"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="50" cy="50" r="50" fill="url(#bg)"/>
+
+  <!-- Dancer silhouette (white) -->
+  <!-- Head -->
+  <circle cx="57" cy="18" r="7" fill="white"/>
+
+  <!-- Body torso -->
+  <path d="M57 25 Q52 35 46 42 Q44 46 48 48 Q54 44 60 38 Q65 32 62 26 Z" fill="white"/>
+
+  <!-- Left arm raised up -->
+  <path d="M57 27 Q62 20 68 14 Q70 12 71 14 Q69 17 65 22 Q61 27 59 30 Z" fill="white"/>
+
+  <!-- Right arm out -->
+  <path d="M48 38 Q40 42 33 45 Q31 46 31 44 Q34 41 41 38 Q46 35 49 36 Z" fill="white"/>
+
+  <!-- Left leg bent back (dance pose) -->
+  <path d="M48 48 Q44 56 40 64 Q37 70 39 72 Q41 73 43 70 Q47 63 51 56 Q53 51 51 48 Z" fill="white"/>
+
+  <!-- Right leg forward/pointed -->
+  <path d="M60 38 Q62 48 64 58 Q66 66 70 70 Q72 71 73 69 Q71 65 69 57 Q67 48 64 40 Z" fill="white"/>
+</svg>
