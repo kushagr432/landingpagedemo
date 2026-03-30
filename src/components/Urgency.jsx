@@ -30,12 +30,14 @@ function useCountdown(targetDate) {
 
 const TimeUnit = ({ value, label }) => (
   <div className="flex flex-col items-center">
-    <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center shadow-lg">
-      <span className="font-display font-black text-3xl sm:text-4xl text-white tabular-nums">
+    <div className="w-14 h-14 xs:w-16 xs:h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-xl sm:rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center shadow-lg">
+      <span className="font-display font-black text-xl xs:text-2xl sm:text-3xl md:text-4xl text-white tabular-nums">
         {String(value).padStart(2, '0')}
       </span>
     </div>
-    <span className="text-gray-400 text-xs font-medium mt-2 uppercase tracking-widest">{label}</span>
+    <span className="text-gray-400 text-[10px] sm:text-xs font-medium mt-1.5 uppercase tracking-wider sm:tracking-widest">
+      {label}
+    </span>
   </div>
 )
 
@@ -118,13 +120,13 @@ export default function Urgency() {
             <HiClock size={16} />
             Workshop starts in:
           </div>
-          <div className="flex items-center justify-center gap-3 sm:gap-5">
+          <div className="flex items-center justify-center gap-1.5 xs:gap-2 sm:gap-4">
             <TimeUnit value={days}    label="Days" />
-            <span className="font-display text-4xl text-white/40 font-black mb-5">:</span>
+            <span className="font-display text-2xl sm:text-4xl text-white/40 font-black mb-5 shrink-0">:</span>
             <TimeUnit value={hours}   label="Hours" />
-            <span className="font-display text-4xl text-white/40 font-black mb-5">:</span>
+            <span className="font-display text-2xl sm:text-4xl text-white/40 font-black mb-5 shrink-0">:</span>
             <TimeUnit value={minutes} label="Minutes" />
-            <span className="font-display text-4xl text-white/40 font-black mb-5">:</span>
+            <span className="font-display text-2xl sm:text-4xl text-white/40 font-black mb-5 shrink-0">:</span>
             <TimeUnit value={seconds} label="Seconds" />
           </div>
         </motion.div>
